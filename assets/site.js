@@ -1,0 +1,13 @@
+(() => {
+ const toggle=document.querySelector('[data-menu-toggle]'),nav=document.querySelector('[data-nav]');
+ if(toggle&&nav){toggle.addEventListener('click',()=>{const open=nav.classList.toggle('is-open');toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Close navigation':'Open navigation')});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('is-open');toggle.setAttribute('aria-expanded','false')}))}
+ const cards=Array.from(document.querySelectorAll('[data-mission]')),key='unplug-reality-kit-completed-v1';let done=[];
+ try{const value=JSON.parse(localStorage.getItem(key)||'[]');if(Array.isArray(value))done=value.filter(x=>typeof x==='string')}catch(_){}
+ const persist=()=>{try{localStorage.setItem(key,JSON.stringify(done))}catch(_){}};
+ const update=(card,isDone)=>{const id=card.dataset.mission;card.classList.toggle('is-done',isDone);const b=card.querySelector('[data-toggle-mission]');if(b){b.textContent=isDone?'Done ✓':'Mark done';b.setAttribute('aria-pressed',String(isDone))}if(isDone&&!done.includes(id))done.push(id);if(!isDone)done=done.filter(x=>x!==id);persist();const count=document.querySelector('[data-completed-count]');if(count)count.textContent=String(done.length)};
+ cards.forEach(card=>{update(card,done.includes(card.dataset.mission));const b=card.querySelector('[data-toggle-mission]');if(b)b.addEventListener('click',()=>update(card,!card.classList.contains('is-done')))});
+ const clear=document.querySelector('[data-clear-missions]');if(clear)clear.addEventListener('click',()=>{done=[];cards.forEach(card=>update(card,false));const msg=document.querySelector('[data-clear-status]');if(msg)msg.textContent='Your local list has been reset.'});
+ const picker=document.querySelector('[data-pick-mission]');if(picker)picker.addEventListener('click',()=>{const available=cards.filter(c=>!c.classList.contains('is-done')),pool=available.length?available:cards,chosen=pool[Math.floor(Math.random()*pool.length)],output=document.querySelector('[data-mission-output]');if(chosen&&output){output.textContent=chosen.querySelector('p')?.textContent||'Choose a small offline action.';output.focus()}});
+ document.querySelectorAll('[data-pick-activity]').forEach(button=>button.addEventListener('click',()=>{const group=document.querySelector('[data-activity-group="'+button.dataset.pickActivity+'"]'),items=group?Array.from(group.querySelectorAll('li')):[],output=document.querySelector('[data-activity-output]'),chosen=items[Math.floor(Math.random()*items.length)];if(output&&chosen)output.textContent=chosen.textContent}));
+ document.querySelectorAll('[data-year]').forEach(node=>node.textContent=String(new Date().getFullYear()));
+})();

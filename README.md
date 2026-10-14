@@ -4,41 +4,24 @@
 
 UNPLUG LABS is an offline-first, anti-hustle digital brand creating thoughtful tools and experiences that help people reclaim attention and reconnect with real life.
 
-This repository is the canonical source for the unified UNPLUG LABS website.
+## Architecture
 
-## Product architecture
+- Parent brand and philosophy.
+- Reality Kit: a prompt picker whose completed items stay in browser local storage.
+- Dopamine Menu: activity ideas grouped by time and effort.
+- Drops: curated collections and releases.
+- Field Manuscript: editorial notes.
+- OFFLINE_OS: a related but distinct launcher project.
+- Directory and plain-language privacy page.
 
-- **UNPLUG LABS** — parent brand and editorial home.
-- **Reality Kit** — practical offline-first activities and experiences.
-- **Dopamine Menu** — a menu of offline activities.
-- **Drops** — collections, digital objects, and interactive experiences.
-- **Field Manuscript** — the brand's deeper thinking and ideas.
-- **OFFLINE_OS** — a distinct Android launcher/product identity, related to but not merged into the parent brand's identity.
+## SEO foundations
 
-## SEO, GEO and AEO principles
+The site includes unique page titles/descriptions, canonical URLs, Open Graph/Twitter cards, JSON-LD on the home and content pages, an XML sitemap, robots.txt, accessible navigation, responsive styling, a local social preview image, Vercel headers, source validation, and GitHub Actions CI.
 
-- Useful, human-first content; no keyword stuffing or mass-generated doorway pages.
-- A single verified canonical host, consistent metadata and structured data.
-- Accurate JSON-LD that matches visible, verified content.
-- Crawlable HTML, descriptive internal links, and a valid XML sitemap.
-- Clear separation of search discovery, AI crawler policies, and model-training crawler policies.
-- No promises of rankings, indexing, rich results, AI Overviews or AI citations.
-- Every migration URL is mapped to a genuinely equivalent destination; no indiscriminate redirects.
+## Intended host
 
-## Deployment
+The intended primary URL in the project plan is https://unplugworld.vercel.app/. **Confirm the Vercel project that actually owns and serves that hostname before production deployment or domain changes.**
 
-Intended primary host (must be verified against the actual Vercel project before production changes):
+## Validate
 
-https://unplugworld.vercel.app/
-
-This repository is designed for Vercel static deployment. Use the root directory as the project root. Read `SEO_GEO_CHECKLIST.md` and `MIGRATION_PLAN.md` before changing production domains or redirects.
-
-## Quality checks
-
-Run:
-
-```sh
-npm run validate
-```
-
-SEO validation is a baseline check, not a substitute for real mobile/browser, accessibility, Search Console, or live deployment testing.
+Run `npm run validate`. A passing check does not prove live rendering, indexing, Core Web Vitals, rich-result eligibility, or AI search citations. See SEO_GEO_CHECKLIST.md and MIGRATION_PLAN.md.
