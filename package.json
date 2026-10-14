@@ -1,0 +1,9 @@
+{
+  "name": "unplug-labs-unified",
+  "version": "1.0.0",
+  "private": true,
+  "description": "UNPLUG LABS unified static website with SEO validation",
+  "scripts": {
+    "validate": "node scripts/validate.mjs"
+  }
+}
